@@ -12,6 +12,8 @@ class User(models.Model):
     name = models.CharField(max_length=64, default='Abc')
     last_name = models.CharField(max_length=64)
     email = models.EmailField()
+    password = models.CharField(max_length=32, default='qwerty')
+    NAME_FIELD = 'email'
 
 #
 #
@@ -48,7 +50,6 @@ class User(models.Model):
 #             if extra_fields.get('is_superuser') is not True:
 #                 raise ValueError('Superuser must have is_superuser=True.')
 #             return self._create_user(email, password, **extra_fields)
-#
 #
 # class User(AbstractUser):
 #
