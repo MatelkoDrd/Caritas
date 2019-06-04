@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 </head>
 
-<body>
+<body style="background: url({% static 'core/img/nazwa_obrazka.jpg' %})">
 
 <center><h2>Tutaj będzie landing page</h2></center>
 <center><p>Ta strona w przyszłości będzie pozwalała na swobodne oddawanie niepotrzebnych rzeczy osobom, znajdującym się w potrzebie</p></center>
