@@ -1,6 +1,5 @@
 from django.db import models
 from organization.models import Organization
-# Create your models here.
 
 
 TYPE_CHOICES = (
