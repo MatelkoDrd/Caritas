@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('login', LoginView.as_view()),
     url('register/', RegisterView.as_view()),
-    url('', BaseView.as_view()),
+    url('/', BaseView.as_view()),
 ]
