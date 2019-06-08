@@ -24,9 +24,9 @@ class LoginView(View):
         print(next_page)
 
         if form.is_valid():
-            username = form.cleaned_data['username']
+            name = form.cleaned_data['name']
             password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=name, password=password)
 
             if user is not None:
                 if user.is_active:
@@ -52,7 +52,23 @@ class RegisterView(View):
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            new_user = User.objects.create_user(**form.cleaned_data)
-            return redirect('/')
+            password2 = form.cleaned_data['password2']
+            query = User.objects.filter(email=email)
+
+            if query:
+                return render(request, 'register.html', {'form':form, 'message': 'Użytkownik o takim mailu istenieje'})
+
+            if password != password2:
+                return render(request, 'register.html', {'form':form, 'message': 'Podane hasła nie są identyczne'})
+
+            add_user = User.objects.create(
+                email=form.cleaned_data['email'],
+                name=form.cleaned_data['name'],
+                last_name=form.cleaned_data['last_name'],
+                password=form.cleaned_data['password'],
+                password2=form.cleaned_data['password2']
+            )
+            return render(request, 'register.html', {'form': form, 'message': f"Stworzono nowego użytkownika{add_user}"})
+
         else:
-            return render(request, 'register.html', {})
+            return render(request, 'register.html', {'form': form})
