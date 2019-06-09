@@ -68,7 +68,12 @@ class RegisterView(View):
                 password=form.cleaned_data['password'],
                 password2=form.cleaned_data['password2']
             )
-            return render(request, 'register.html', {'form': form, 'message': f"Stworzono nowego użytkownika{add_user}"})
+            return redirect('/user_registrated')
 
         else:
             return render(request, 'register.html', {'form': form})
+
+
+class UserRegisteredView(View):
+    def get(self, request):
+        return render(request, 'user_registered.html', {})

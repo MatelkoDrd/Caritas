@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Landing page</title>
-{#    {% load staticfiles %}#}
-{#    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">#}
+
 </head>
 
-{#<body style="background: url({% static 'core/img/nazwa_obrazka.jpg' %})">#}
+
 <body>
 
 <div>
     <center><h2>Tutaj będzie landing page</h2></center>
     <center><p>Ta strona w przyszłości będzie pozwalała na swobodne oddawanie niepotrzebnych rzeczy osobom, znajdującym się w potrzebie</p></center>
-        <a href="/login">Zaloguj się</a>
+        <a href="/login">Zaloguj się</a><br>
+        <a href="/register">Zarejestruj się</a>
             {% block container %}
             {% endblock %}
 </div>

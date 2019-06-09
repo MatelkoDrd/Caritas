@@ -17,11 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 
 
-from core.views import BaseView, LoginView, RegisterView
+from core.views import BaseView, LoginView, RegisterView, UserRegisteredView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('login', LoginView.as_view()),
     url('register/', RegisterView.as_view()),
+    url('user_registered', UserRegisteredView.as_view()),
     url('', BaseView.as_view()),
+
 ]
