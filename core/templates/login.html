@@ -1,6 +1,14 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing page</title>
 
-{% block container %}
+</head>
+
+
+<body>
+{% csrf_token %}
 
 <center><div>
   <h2>Zaloguj się</h2>
@@ -10,9 +18,9 @@
     <input value="OK" type="submit">
   </form>
     </div></center>
-{% endblock %}
 
-
+</body>
+</html>
 
 
 

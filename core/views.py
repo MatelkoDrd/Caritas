@@ -1,16 +1,21 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.template.response import TemplateResponse
 from django.views import View
 from core.forms import LoginForm
 from core.forms import RegisterForm
 from user.models import User
 
 
-class BaseView(View):
+class BaseView(LoginRequiredMixin, View):
+    login_url = '/login'
+
     def get(self, request):
-        return render(request, 'base.html', {})
+        return TemplateResponse(request, 'base.html', {})
 
 
 class LoginView(View):
@@ -31,9 +36,13 @@ class LoginView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+
+                if user.is_superuser:
+                    return HttpResponse('admin/')
+
                 if next_page:
                     return redirect(next_page)
-                return redirect('/')
+
             else:
                 return render(request, 'login.html', {'form': form, 'message': 'Nie ma takiego uzytkownika'})
         else:
@@ -68,7 +77,7 @@ class RegisterView(View):
                 password=form.cleaned_data['password'],
                 password2=form.cleaned_data['password2']
             )
-            return redirect('/user_registrated')
+            return redirect('/user_registered')
 
         else:
             return render(request, 'register.html', {'form': form})

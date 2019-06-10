@@ -1,14 +1,33 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing page</title>
 
-    {% block container %}
 
-        <center><div>
-                <h2>Rejestracja:</h2>
+</head>
 
-                    <p>Nie masz jeszcze u nas konta?</p>
+<body>
 
-                        {% include 'form.html' %}
+<center><div>
 
-        </div></center>
+    <h2>Rejestracja:</h2>
 
-    {% endblock %}
+        <p>Nie masz jeszcze u nas konta?</p>
+
+            <form action="{{ action }}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input value="Zarejestruj się" type="submit">
+            </form>
+
+    </div></center>
+
+</body>
+</html>
+
+
+
+
+
+
