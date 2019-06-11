@@ -1,6 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -38,7 +38,7 @@ class LoginView(View):
                     login(request, user)
 
                 if user.is_superuser:
-                    return HttpResponse('admin/')
+                    return HttpResponseRedirect('/admin/')
 
                 if next_page:
                     return redirect(next_page)

@@ -1,14 +1,16 @@
-from django.contrib.auth.models import AbstractUser, UserManager
+from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
 
 
-class User(models.Model):
+class UserProfile(models.Model):
 
-    name = models.CharField(max_length=64)
-    last_name = models.CharField(max_length=64)
-    email = models.EmailField()
-    password = models.CharField(max_length=32)
-    password2 = models.CharField(max_length=32)
-    NAME_FIELD = 'email'
+    user_data = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
+    phone = models.CharField(max_length=12)
+    address = models.CharField(max_length=64)
+    age = models.IntegerField()
+
+
+    def __str__(self):
+        return self.user_data.email
+
