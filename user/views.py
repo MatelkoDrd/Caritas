@@ -2,9 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-# Create your views here.
 from django.views import View
-
 from user.forms import UserProfileForm, ChangePasswordForm
 
 
@@ -16,7 +14,7 @@ class UserProfileView(LoginRequiredMixin, View):
 
 class UserProfileEditView(LoginRequiredMixin, View):
     def get(self, request):
-        user = User.objects.get(pk=request.user.id)
+        user = User.objects.get(id=request.user.id)
         form = UserProfileForm(initial={
             'first_name': user.first_name,
             'last_name': user.last_name,
@@ -36,10 +34,10 @@ class UserProfileEditView(LoginRequiredMixin, View):
             return redirect('user/profile')
 
 
-class ChangePassword(LoginRequiredMixin, View):
+class ChangePasswordView(LoginRequiredMixin, View):
     def get(self, request):
         form = ChangePasswordForm()
-        return render(request, 'change_user_password.html', {'form':form})
+        return render(request, 'change_user_password.html', {'form': form})
 
     def post(self, request):
         form = ChangePasswordForm(request.POST)

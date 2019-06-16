@@ -130,3 +130,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # AUTH_USER_MODEL = 'user.User'
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
